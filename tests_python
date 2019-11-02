@@ -1,0 +1,25 @@
+import unittest
+from selenium import webdriver
+
+class Login(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls) -> None:
+        cls.driver = webdriver.Chrome("/home/ute/Documents/Work/Develop/Python/webdriver_my/chromedriver")
+        cls.driver.implicitly_wait(33)
+        cls.driver.maximize_window()
+
+    def test_login_valid(self):
+        self.driver.get("https://www.ryanair.com/ie/en/")
+        self.driver.find_element_by_css_selector("#myryanair-auth-login").click()
+        self.driver.find_element_by_css_selector("[name='emailAddress']").send_keys("gora2ks@gmail.com")
+        self.driver.find_element_by_css_selector("#password308").send_keys("Gogodz78600")
+        self.driver.find_element_by_css_selector("button[type='submit'][class='core-btn-primary']").click()
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.driver.close()
+        cls.driver.quit()
+        print("Test complite")
+        if __name__ == '__main__':
+            unittest.main()
+
