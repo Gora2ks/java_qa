@@ -1,0 +1,92 @@
+
+Id
+XPath
+cssSelector
+className
+tagName
+name
+linkText
+partialLinkText
+next goal - cours of Prortactor
+
+TestNG
+
+Signity, PGS Software, Accenture, Capgemini, Sii, Dolby, Objectivity, GlobalLogic
+Ans. The different locators in Selenium are-
+check right xpath and css
+css - $("...css....")
+xpath - $x("..xpath...")
+xpath
+//*  - this this key of succsees
+//*[@id='ctl00_mainContent_ddl_destinationStation1_CTXT']
+(//  - it is a key
+(//a[@value='HYD'])[2]
+hint for catch one of object from same - (//a[text()='Dodaj do koszyka'])[4]
+css 
+tagname[attribute*=value]  - input[class*=core-input]
+tagname[attribute^='value'][atttribute='value']
+tagname[attribute$='value']
+
+
+
+786000  win&nikia
+Crts + Alt + L  - format code on the page
+ALT + Insert =create new object or other thinks
+Crtl +Y  delete current line
+Crtl + D copy current line
+Crtl + X - cut current line  == Crtl + v Past this line where you want
+To add a new line﻿
+Press Shift+Enter to add a new line after the current line.
+
+Press Ctrl+Enter to add a new line after the current line.
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+interface  niema konstruktora, jest używany method void
+#webdriver + #java + #testng + #maven + #jenkins + #selenium-grid + #gitlab + Idea + #allure
+driver.switchTo().alert().accept();
+imoprt java.util.scaner - 
+available through the Scanner class:
+Read a byte - nextByte()
+Read a short - nextShort()
+Read an int - nextInt()
+Read a long - nextLong()
+Read a float - nextFloat()
+Read a double - nextDouble()
+Read a boolean - nextBoolean()
+Read a complete line - nextLine()
+Read a word - next()
+switch  case 
+&& - and 
+||  - or   
+Alt + Enter = Create a new test or other option
+sout  =  System.out.println();
+psvm   = public static void main(String[] args)
+Crtl  + Alt + L  + format the code in Inteliji
+//hint for catch one of object from same - (//a[text()='Dodaj do koszyka'])[4]
+//<input value="Увійти" aria-label="Вхід" data-testid="royal_login_button" type="submit" id="u_0_b">
+
+//<button type="submit" class="_6j mvm _6wk _6wl _58mi _6o _6v" name="websubmit" id="u_0_17">Зареєструватися</button>
+
+//input - TagName
+//Attributes - class
+//Vslue - input text
+//namme = attribute
+//email - value
+//___code:    //tagName[@attribute+'value']
+//___code     //input[@value='Увійти']
+
+//CSS  - code:                     //tagName[attribute='value']  
+//driver.findElement(By.cssSelector("input[value='Увійти']")).click();
+
+//     tagNameid  -CSS
+//     input#username
+//     
+//		tagname.classname - CSS
+
+//		#email
