@@ -8,8 +8,20 @@ name
 linkText
 partialLinkText
 next goal - cours of Prortactor
-
 TestNG
+
+&& - and 
+||  - or   
+Alt + Enter = Create a new test or other option
+786000  win&nikia
+Crts + Alt + L  - format code on the page
+ALT + Insert =create new object or other thinks
+Crtl +Y  delete current line
+Crtl + D copy current line
+Crtl + X - cut current line  == Crtl + v Past this line where you want
+To add a new line﻿
+Press Shift+Enter to add a new line after the current line.
+Press Ctrl+Enter to add a new line after the current line.
 
 Signity, PGS Software, Accenture, Capgemini, Sii, Dolby, Objectivity, GlobalLogic
 Ans. The different locators in Selenium are-
@@ -26,19 +38,6 @@ css
 tagname[attribute*=value]  - input[class*=core-input]
 tagname[attribute^='value'][atttribute='value']
 tagname[attribute$='value']
-
-
-
-786000  win&nikia
-Crts + Alt + L  - format code on the page
-ALT + Insert =create new object or other thinks
-Crtl +Y  delete current line
-Crtl + D copy current line
-Crtl + X - cut current line  == Crtl + v Past this line where you want
-To add a new line﻿
-Press Shift+Enter to add a new line after the current line.
-
-Press Ctrl+Enter to add a new line after the current line.
 
 import java.io.IOException;
 import javax.servlet.ServletException;
