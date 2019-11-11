@@ -16,7 +16,7 @@ public class loginPage {
         this.driver = driver;
         driver.manage().window().maximize();
         driver.get("https://www.ryanair.com/ie/en/");
-        driver.manage().timeouts().implicitlyWait(6000,
+        driver.manage().timeouts().implicitlyWait(7,
                 TimeUnit.SECONDS);
 
     }
