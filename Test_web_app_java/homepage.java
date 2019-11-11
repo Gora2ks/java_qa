@@ -2,8 +2,11 @@ package ryanairrepository;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import java.util.concurrent.TimeUnit;
 
 public class homepage {
     WebDriver driver;
@@ -12,6 +15,9 @@ public class homepage {
     public homepage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
+        driver.manage().window().maximize();
+        driver.get("https://www.ryanair.com/ie/en/");
+
     }
 
     //Departure
@@ -24,14 +30,17 @@ public class homepage {
     //Destination
     @FindBy(css = "input[placeholder='Destination airport']")
     WebElement destination;
-    // Day of the Deoarture
+
+    // Day of the Departure
     @FindBy(css = "li[data-id*='15-11']")
     WebElement date_of_departure;
+
     //Book one or more one passengers
-    @FindBy(css = "div[class='dropdown-handle']")
+    @FindBy(css = "div[name='passengers']")
     WebElement passengers_input;
+
     //Chose how many of passengers will go
-    @FindBy(css = "div[value*='paxInput.adults']")
+    @FindBy(css = "input[aria-label='Adults 16+ years']")
     WebElement input_adults;
 
     @FindBy(css = "div[value*='paxInput.teens']")
@@ -42,6 +51,9 @@ public class homepage {
 
     @FindBy(css = "div[value*='paxInput.infants']")
     WebElement input_infants;
+
+    @FindBy(css = "div[class='col-flight-search-right']")
+    WebElement lets_go_search;
 
     public WebElement Ticket_to_one_way() {
         return ticket_to_one_way;
@@ -77,6 +89,10 @@ public class homepage {
 
     public WebElement Input_infants() {
         return input_infants;
+    }
+
+    public WebElement Lets_go_Search() {
+        return lets_go_search;
     }
 
 }
