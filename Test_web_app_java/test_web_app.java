@@ -1,96 +1,90 @@
-import org.junit.BeforeClass;
-import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import ryanairrepository.homepage;
 import ryanairrepository.loginPage;
+
 import java.util.concurrent.TimeUnit;
+
 // Test_web_app class implemented in normal Page object pattern style
 
 public class test_web_app {
-    @BeforeClass
-    public static void setup() {
+
+    public static void setup()  {
         System.setProperty("webdriver.chrome.driver", "/home/ute/Documents/Work/Develop/Python/webdriver_my/chromedriver");
-        WebDriver driver = new ChromeDriver();
-        //       driver.manage().deleteAllCookies();
-        driver.manage().timeouts().implicitlyWait(30,
-                TimeUnit.SECONDS);
+
     }
 
     @Test(priority = 1)
-    public void Login() throws InterruptedException {
+    public void Login()  {
         WebDriver driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.get("https://www.ryanair.com/ie/en/");
-        JavascriptExecutor js = (JavascriptExecutor) driver;
         loginPage lp = new loginPage(driver);
         lp.Login().click();
-        Thread.sleep(1000);
         lp.EmailId().click();
         lp.EmailId().sendKeys("gora2ks@gmail.com");
         lp.Eye().click();
         lp.PasswordId().sendKeys("Gogodz78600");
         lp.SubmitId().click();
-        {
-            homepage hp = new homepage(driver);
-            Thread.sleep(2000);
-            hp.Ticket_to_one_way().click();
-//        hp.departure().click();
-            hp.Departure().sendKeys("wroclaw");
-            hp.Departure().sendKeys(Keys.ENTER);
-            hp.Destination().sendKeys("paris B");
-            hp.Destination().sendKeys(Keys.ENTER);
-            Thread.sleep(1000);
-            hp.Date_of_departure().click();
-            hp.Passengers_input().click();
-            Thread.sleep(2000);
-            for (int i = 1; i < 2; i++) {
-                hp.Input_adults().click();
-            }
-            for (int i = 0; i < 2; i++) {
-                hp.Input_teens().click();
-            }
-            for (int i = 0; i < 1; i++) {
-                hp.Input_children().click();
-            }
-            for (int i = 0; i < 1; i++) {
-                hp.Input_infants().click();
-            }
-
-
-        }
-    }
-
-//        WebElement overlay = driver.findElement(By.xpath(".//input[@name='password']"));
-//        js.executeScript("arguments[0].click();", overlay);;
-//        overlay.sendKeys("123");
-//        System.out.printf(" go");
-//        lp.SubmitId().click();
-
-
-//        Assert.assertTrue(driver.findElement(By.cssSelector("#checkBoxOption1")).isSelected());
-//        Assert.assertFalse(driver.findElement(By.cssSelector("#checkBoxOption1")).isSelected())
-
-
-//    @Test(priority = 3)
-//    void homepage() {
-//        WebDriver driver = new ChromeDriver();
-//        homepage hp = new homepage(driver);
-//
-//
-//
-//        System.out.printf("gogodz");
-//    }
-
-    @Test(priority = 1)
-    void pay() {
-        int apple = 5;
-        System.out.println(apple + 3.5);
-
+//        driver.quit();
 
     }
 
+    @Test(priority = 2)
+    public void LoginInvalidPassword()   {
+        WebDriver driver = new ChromeDriver();
+        loginPage lp = new loginPage(driver);
+        lp.Login().click();
+        lp.EmailId().click();
+        lp.EmailId().sendKeys("gora5ks@gmail.com");
+        lp.Eye().click();
+        lp.PasswordId().sendKeys("Grk2&we3");
+        lp.SubmitId().click();
+        lp.AlertInvalidPassword().getText();
+        System.out.println(lp.AlertInvalidPassword().getText());
+        Assert.assertEquals(lp.AlertInvalidPassword().getText(), "Invalid password. 0 attempts left");
+        driver.quit();
+    }
+
+    @Test(priority = 3)
+    public void homePageBooking() throws InterruptedException {
+        WebDriver driver = new ChromeDriver();
+        homepage hp = new homepage(driver);
+        driver.manage().timeouts().implicitlyWait(6000,
+                TimeUnit.SECONDS);
+        hp.Ticket_to_one_way().click();
+        hp.Departure().sendKeys("wrocla");
+        hp.Departure().sendKeys(Keys.ENTER);
+        hp.Destination().sendKeys("paris");
+        hp.Destination().sendKeys(Keys.ENTER);
+        hp.Date_of_departure().click();
+        hp.Passengers_input().click();
+        hp.Input_adults().clear();
+        hp.Input_adults().sendKeys("3");
+        Thread.sleep(2000);
+        hp.Passengers_input().click();
+        System.out.println(hp.Passengers_input().getText());
+        Assert.assertEquals(hp.Passengers_input().getText(),
+                "Passengers:\n" +
+                        " Adult (age 16+)");
+//        Assert.assertEquals(driver.findElement(By.cssSelector
+//                        ("div[name='passengers']")).getText(),
+//                "Passengers:\n" +
+//                        " Adult (age 16+)");
+//        hp.Lets_go_Search().click();
+//            // Create a new Page Object fo Flight reservation Part
+//            flights_table_price ft = new flights_table_price(driver);
+//            //          Thread.sleep(4000);
+//            ft.Flights_table_price_from().click();
+//            Thread.sleep(2000);
+//            ft.Flights_table_fares_standard().click();
+//
+//            ft.Your_selected_flihgts().click();
+//        driver.quit();
+    }
 }
+
+
 
