@@ -28,7 +28,7 @@ public class test_web_app {
         lp.Eye().click();
         lp.PasswordId().sendKeys("Gogodz78600");
         lp.SubmitId().click();
-//        driver.quit();
+        driver.quit();
 
     }
 
@@ -52,7 +52,7 @@ public class test_web_app {
     public void homePageBooking() throws InterruptedException {
         WebDriver driver = new ChromeDriver();
         homepage hp = new homepage(driver);
-        driver.manage().timeouts().implicitlyWait(6000,
+        driver.manage().timeouts().implicitlyWait(5,
                 TimeUnit.SECONDS);
         hp.Ticket_to_one_way().click();
         hp.Departure().sendKeys("wrocla");
@@ -68,7 +68,8 @@ public class test_web_app {
         System.out.println(hp.Passengers_input().getText());
         Assert.assertEquals(hp.Passengers_input().getText(),
                 "Passengers:\n" +
-                        " Adult (age 16+)");
+                        "3 adults");
+//                        " Adult (age 16+)");
 //        Assert.assertEquals(driver.findElement(By.cssSelector
 //                        ("div[name='passengers']")).getText(),
 //                "Passengers:\n" +
