@@ -1,0 +1,69 @@
+package ryanairrepository;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+import java.util.concurrent.TimeUnit;
+
+public class choosePacket {
+    WebDriver driver;
+
+    // Home Page class implemented in Page Object Factory method
+    public choosePacket(WebDriver driver) {
+        this.driver = driver;
+        PageFactory.initElements(driver, this);
+        driver.manage().timeouts().implicitlyWait(7,
+                TimeUnit.SECONDS);
+    }
+
+    @FindBy(css = "div[class='flight-header__min-price hide-mobile']") //div[class='core-btn-primary']
+    WebElement Flights_table_price_to;
+    @FindBy(css = "div[class='flight-header__min-price hide-mobile']")
+    WebElement Flights_table_price_from;
+    @FindBy(css = "div[class='flights-table-fares__fare fare-select standard']")
+    WebElement Flights_table_fares_standard;
+    @FindBy(css = "flights-table-fares__fare fare-select leisure-plus middle")
+    WebElement Flights_table_fares_middle;
+    @FindBy(css = "flights-table-fares__fare fare-select business-plus middle")
+    WebElement Flights_table_fares_plus_middle;
+    @FindBy(css = "core-btn-secondary fare-upgrade__action-button")
+    WebElement Your_selected_flihgts;
+    @FindBy(css = "button[class='core-btn-secondary fare-upgrade__action-button']")
+    WebElement Upgrade_to_flexi_Plus;
+    @FindBy(css = "button[class*='core-btn-primary']")
+    WebElement Continue_button;
+
+    public WebElement Flights_table_price_to() {
+        return Flights_table_price_to;
+    }
+
+    public WebElement Flights_table_price_from() {
+        return Flights_table_price_from;
+    }
+
+    public WebElement Flights_table_fares_standard() {
+        return Flights_table_fares_standard;
+    }
+
+    public WebElement Flights_table_fares_plus_middle() {
+        return Flights_table_fares_middle;
+    }
+
+    public WebElement Flights_table_fares_business_plus() {
+        return Flights_table_fares_plus_middle;
+    }
+    public WebElement Your_selected_flihgts(){
+        return Your_selected_flihgts;
+    }
+    public WebElement Upgrade_to_flexi_Plus(){
+        return Upgrade_to_flexi_Plus;
+    }
+    public WebElement Continue_button(){
+        return Continue_button;
+    }
+}
+
+
