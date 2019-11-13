@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 public class homepage {
     WebDriver driver;
 
-    // Home Page class implemented in Page Object Factory method
+    // Home Page class implemented in Page Object Factory method - because code on the page is more readable and simple
     public homepage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
