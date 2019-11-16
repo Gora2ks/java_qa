@@ -64,6 +64,25 @@ public class choosePacket {
     public WebElement Continue_button(){
         return Continue_button;
     }
+
+    // Second test to book
+    @FindBy (css = "button.card-header")
+    WebElement standart_fare;
+    @FindBy (css = "button[class*='button--gradient-blue']")
+    WebElement button_blue;
+    @FindBy (css = "div[class='dropdown b2']")
+    WebElement passenger_1;
+
+    public WebElement Standart_fare() {
+        return standart_fare;
+    }
+
+    public WebElement Button_blue(){
+        return button_blue;
+    }
+    public WebElement Passenger_1(){
+        return passenger_1;
+    }
 }
 
 
