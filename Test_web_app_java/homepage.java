@@ -2,11 +2,8 @@ package ryanairrepository;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
-import java.util.concurrent.TimeUnit;
 
 public class homepage {
     WebDriver driver;
@@ -32,7 +29,7 @@ public class homepage {
     WebElement destination;
 
     // Day of the Departure
-    @FindBy(css = "li[data-id*='15-11']")
+    @FindBy(css = "li[data-id*='22-11']")
     WebElement date_of_departure;
 
     //Book one or more one passengers
@@ -54,6 +51,7 @@ public class homepage {
 
     @FindBy(css = "div[class='col-flight-search-right']")
     WebElement lets_go_search;
+
 
     public WebElement Ticket_to_one_way() {
         return ticket_to_one_way;
