@@ -1,16 +1,16 @@
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
+import org.apache.tools.ant.util.FileUtils;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
+import ryanairrepository.choosePacket;
 import ryanairrepository.homepage;
 import ryanairrepository.loginPage;
-import ryanairrepository.choosePacket;
 
+import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 // Test_web_app class implemented in normal Page object pattern style
@@ -35,6 +35,7 @@ public class test_web_app {
         driver.quit(); // close browser
 
     }
+
     // Login with negative scenario
     @Test(priority = 2)
     public void LoginInvalidPassword() {
@@ -51,6 +52,7 @@ public class test_web_app {
         Assert.assertEquals(lp.AlertInvalidPassword().getText(), "Invalid password. 0 attempts left"); //check the text fo alert
         driver.quit();  // close browser
     }
+
     // Home Page class implemented in Page Object Factory method - because code on the page is more readable and simple
     @Test(priority = 3)
     public void homePageBooking() throws InterruptedException {
@@ -76,28 +78,83 @@ public class test_web_app {
         hp.Input_adults().clear();
         //explicit wait
 //        w.until(ExpectedConditions.elementSelectionStateToBe(By.cssSelector
-        hp.Input_adults().sendKeys("3");
+        hp.Input_adults().sendKeys("2");
         Thread.sleep(2000); // Sleep it is not good practice!
         hp.Passengers_input().click();
         System.out.println(hp.Passengers_input().getText());
         Assert.assertEquals(hp.Passengers_input().getText(),
                 "Passengers:\n" +
-                        "3 adults");
+                        "2 adults");
         hp.Lets_go_Search().click();
 
 //            // Create a new Page Object fo ChoosePacket
-            choosePacket ft = new choosePacket(driver);
-            ft.Flights_table_price_from().click();
-            Thread.sleep(3000);
-            ft.Flights_table_fares_plus_middle().click();
-            ft.Your_selected_flihgts().click();
-            ft.Upgrade_to_flexi_Plus().click();
-            w.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[class*='core-btn-primary']")));
-            Thread.sleep(10000);
-            ft.Continue_button().click();
-//        driver.quit();
+        choosePacket ft = new choosePacket(driver);
+        ft.Flights_table_price_from().click();
+        Thread.sleep(3000);
+        ft.Flights_table_fares_business_plus().click();
+        ft.Your_selected_flihgts().click();
+        ft.Upgrade_to_flexi_Plus().click();
+        w.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[class*='core-btn-primary']")));
+        Thread.sleep(10000);
+        ft.Continue_button().click();
+        driver.quit();
+    }
+    // Second test with diferent way to book
+    @Test(priority = 4)
+    public void homePageBooking_2() throws InterruptedException {
+        WebDriver driver = new ChromeDriver();
+
+        homepage hp = new homepage(driver); // create variable for Home Page Object Factory method
+
+        WebDriverWait w = new WebDriverWait(driver, 7); /*explicit wait,
+        waits is applied only at targetted
+        elements. So no performance issues,but more code
+        */
+        driver.manage().timeouts().implicitlyWait(5,
+                TimeUnit.SECONDS);  /*implicit wait, -  globally variable -
+                covered all of target of below test,
+        but Perfomance are not high */
+        hp.Ticket_to_one_way().click();
+        hp.Departure().sendKeys("wrocla");
+        hp.Departure().sendKeys(Keys.ENTER);
+        hp.Destination().sendKeys("paris");
+        hp.Destination().sendKeys(Keys.ENTER);
+        hp.Date_of_departure().click();
+        hp.Passengers_input().click();
+        hp.Input_adults().clear();
+        //explicit wait
+//        w.until(ExpectedConditions.elementSelectionStateToBe(By.cssSelector
+        hp.Input_adults().sendKeys("2");
+        Thread.sleep(2000); // Sleep it is not good practice!
+        hp.Passengers_input().click();
+        System.out.println(hp.Passengers_input().getText());
+        Assert.assertEquals(hp.Passengers_input().getText(),
+                "Passengers:\n" +
+                        "2 adults");
+        hp.Lets_go_Search().click();
+
+//            // Create a new Page Object fo ChoosePacket
+        choosePacket ft = new choosePacket(driver);
+        ft.Standart_fare().click();
+        Thread.sleep(3000);
+        ft.Button_blue().click();
+        Thread.sleep(2000);
+        ft.Passenger_1().click();
+        ft.Passenger_1().sendKeys("Mr");
+        Thread.sleep(3000);
+        ft.Passenger_1().click();
+        w.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[class*='core-btn-primary']")));
+        Thread.sleep(10000);
+        ft.Continue_button().click();
+        driver.quit();
+    }
+    @AfterTest  //AfterMethod annotation - This method executes after every test execution
+    private void getScreenshot(WebDriver driver) throws InterruptedException  {
+        File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+//        FileUtils.copyFile(src, new File("/home/ute/Documents/Work/Develop/inteligi_java_source/test_custom/test-output/Screenshots"));
     }
 }
+
 
 
 
